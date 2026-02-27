@@ -6,25 +6,21 @@ public class PalindromeCheckerApp{
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a string: ");
         String str = sc.nextLine();
-
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
         for (char ch : str.toCharArray()) {
-            queue.add(ch);
-            stack.push(ch);
+            deque.addLast(ch);
         }
 
         boolean isPalindrome = true;
-        while (!queue.isEmpty()) {
-            char qChar = queue.remove();
-            char sChar = stack.pop();
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear  = deque.removeLast();
 
-            if (qChar != sChar) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
         }
-
         if (isPalindrome)
             System.out.println("Palindrome");
         else
