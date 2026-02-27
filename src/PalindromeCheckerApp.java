@@ -1,23 +1,38 @@
+import java.util.Scanner;
+
+class PalindromeChecker {
+
+    public boolean checkPalindrome(String str) {
+        str = str.replaceAll("\\s+", "").toLowerCase();
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right))
+                return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        String word = "radar";
-        char[] ch = word.toCharArray();
-        int start = 0;
-        int end = ch.length - 1;
-        boolean isPalindrome = true;
-        while (start < end) {
-            if (ch[start] != ch[end]) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
-        }
-        if (isPalindrome) {
-            System.out.println(word + " is Palindrome");
-        } else {
-            System.out.println(word + " is not a Palindrome");
-        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        PalindromeChecker checker = new PalindromeChecker();
+
+        if (checker.checkPalindrome(input))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not a Palindrome");
+
+        sc.close();
     }
 }
